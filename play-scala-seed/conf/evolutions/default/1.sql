@@ -1,0 +1,18 @@
+# --- !Ups
+CREATE TABLE user (
+  id BIGSERIAL NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(200) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE post (
+    id BIGSERIAL NOT NULL ,
+    user_id BIGINT NOT NULL REFERENCES user(id),
+    comment text NOT NULL DEFAULT '',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+# --- !Downs
+DROP TABLE post;
+DROP TABLE user;
